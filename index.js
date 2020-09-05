@@ -14,6 +14,15 @@ const errorHandler = require('./_helpers/error-handler')
 app.use(bodyParser.urlencoded( {extended: false} )); //x-www-form-urlencoded
 app.use(bodyParser.json()); //aplication/json
 
+// Test Route Untuk Pertama Kalinya
+app.get('/', ( req, res, next ) => {
+    res.status(200).json({
+        message: "Berhasil",
+        err: null,
+        base_url: process.env.BASE_URL,
+    })
+});
+
 // Route to Users
 app.use('/users', userController);
 

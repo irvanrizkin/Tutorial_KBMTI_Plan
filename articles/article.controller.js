@@ -59,6 +59,22 @@ function create( req, res, next ){
 }
 
 async function store( req, res, next ){
+    // Check whether the User is really exist or not
+    let is404 = false;
+    await userService.getById(req.body.user_id)
+        .then( (data) => {
+            if (data == undefined) {
+                is404 = true
+                return next("User not found.")
+            }
+        } )
+        .catch( (err) => {
+            next(err)
+        } );
+    // If is404, then the function is stopped
+    if(is404){
+        return
+    }
     await articleService.store(req.body)
     .then( (data) => {
         res.status(201).json({

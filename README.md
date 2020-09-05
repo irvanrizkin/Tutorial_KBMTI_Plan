@@ -21,3 +21,7 @@
  * @post /articles/store    => to add new articles. Need `title`, `content`, and `user_id` field.
  * @put /articles/:id       => to update specific articles within given id. Need `title` and `content`
  * @delete /articles:id     => to delete specific articles within given id
+
+
+##
+* You can test the API with `mocha`. Right now, it just `users` though.

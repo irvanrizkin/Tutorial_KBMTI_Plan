@@ -24,4 +24,4 @@
 
 
 ##
-* You can test the API with `mocha`. Right now, it just `users` though.
+* You can test the API with `mocha`. Right now, it just `users` though. To run test, type `npm test`

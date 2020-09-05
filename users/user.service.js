@@ -1,4 +1,5 @@
 const db = require('_helpers/db');
+const bcrypt = require('bcryptjs');
 
 const getAll =  () => {
     return new Promise ( (resolve, reject) => {
@@ -19,15 +20,16 @@ const getById = (id) => {
                 reject(err)
             }
             else {
-                resolve(data)
+                resolve(...data)
             } 
         })
     }  );
 }
 
-const register = ( {first_name, last_name} ) => {
+const register = ( {first_name, last_name, password} ) => {
     return new Promise( (resolve, reject) => {
-        let query = `INSERT INTO users (first_name, last_name) VALUES ('${first_name}', '${last_name}')`
+        let hashPassword = bcrypt.hashSync(password)
+        let query = `INSERT INTO users (first_name, last_name, hashPassword) VALUES ('${first_name}', '${last_name}', '${hashPassword}')`
         db.query(query, ( err, data ) => {
             if (err) reject(err)
             else resolve(data)

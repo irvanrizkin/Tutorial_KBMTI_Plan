@@ -7,7 +7,7 @@
 4. Type `nodemon` if you have `nodemon` installed globally, or you can just type `node index.js`
 
 ## AVAIBLE ROUTES
-* users
+### users
  * @get /users/             => to get index message
  * @get /users/all          => to get all users in database
  * @get /users/:id          => to get specific user within given id
@@ -15,7 +15,7 @@
  * @put /users/:id          => to update specific users within given id. Need "first_name" and "last_name"
  * @delete /users/:id       => to delete specific user within given id
 
-* articles
+### articles
  * @get /articles/all       => to get all articles in database
  * @get /articles/:id       => to get specific articles within given id
  * @post /articles/store    => to add new articles. Need "title", "content", and "user_id" field.

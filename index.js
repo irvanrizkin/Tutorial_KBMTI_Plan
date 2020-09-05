@@ -1,4 +1,4 @@
-require('rootpath');
+require('rootpath')();
 require('dotenv').config();
 
 // Requirement daripada aplikasi kita
@@ -7,14 +7,17 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-// Configuration terhadap requirement
-app.use(bodyParser.urlencoded( { extended: false } ));
-app.use(bodyParser.json())
+const userController = require('./users/user.controller')
+const errorHandler = require('./_helpers/error-handler')
 
-// Route -> API Routes
-// Controller bernama User, di mana nanti kita akan mengkoneksikannya dengan localhost DB.
+app.use(bodyParser.urlencoded( {extended: false} )); //x-www-form-urlencoded
+app.use(bodyParser.json()); //aplication/json
 
-// Error Handler
+// Route to Users
+app.use('/users', userController);
+
+// Global Handler
+app.use(errorHandler)
 
 const port = process.env.PORT ? process.env.PORT : 4000;
 app.listen(port, () => {

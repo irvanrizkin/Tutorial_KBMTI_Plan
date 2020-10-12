@@ -16,7 +16,11 @@ module.exports = router
 
 // Routes
 router.get('/all', getAll)
+router.get('/list', showArticleList)
 router.get('/:id', getById)
+router.get('/add-article', create)
+router.get('/edit-article', updateView)
+router.get('/show-article', show)
 router.post('/store', validateCreateJSON, store)
 router.put('/:id', getById, validateUpdateJSON, update)
 router.delete('/:id', getById, _delete)
@@ -37,6 +41,24 @@ async function getAll(req, res, next){
         } )
 }
 
+// Show All Article View
+function showArticleList(req,res,next) {
+    res.render('article-list')
+}
+
+function updateView(req, res, next) {
+    res.render('article-update')
+}
+
+function create(req, res, next){
+    // It should return view
+    res.render('article-add')
+}
+
+function show(req,res,next) {
+    res.render('article-get')
+}
+
 async function getById(req, res, next){
     await articleService.getById(req.params.id)
         .then( async (data) => {
@@ -54,9 +76,7 @@ async function getById(req, res, next){
 
 // Register a Article
 
-function create( req, res, next ){
-    // It should return view
-}
+
 
 async function store( req, res, next ){
     // Check whether the User is really exist or not
@@ -86,6 +106,8 @@ async function store( req, res, next ){
 }
 
 // Update a Article
+
+
 
 async function update( req, res, next ){
     await articleService.update(req.params.id, req.body)

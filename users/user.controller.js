@@ -19,6 +19,8 @@ module.exports = router
 router.get('/', index)
 router.get('/all', getAllUser)
 router.get('/user/:id', getById)
+router.get('/register-page', create)
+router.get('/login-page', login)
 router.post('/register', validateCreateJSON, store);
 router.put('/user/:id', validateUpdateJSON, update);
 router.delete('/user/:id', _delete)
@@ -67,7 +69,12 @@ async function getById(req, res, next) {
 
 // Register User
 function create(req, res, next) {
-    // It should return view
+    res.render('register');
+}
+
+// Login User
+function login(req, res, next) {
+    res.render('login');
 }
 
 async function store(req, res, next) {

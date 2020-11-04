@@ -10,8 +10,16 @@ module.exports = router
 // ROUTES
 router.get('/', homepage)
 
-// FUNCTION
-function homepage(req,res,next) {
-    res.render('homepage');
-}
+// Article Service
+const articleService = require('../articles/article.service');
 
+// FUNCTION
+async function homepage(req, res, next) {
+    await articleService.getAll()
+        .then((data) => {
+            res.render('homepage', {
+                data: data,
+                length: data.length
+            });
+        })
+}

@@ -28,40 +28,45 @@ router.delete('/:id', getById, _delete)
 
 // Functions
 
-async function getAll(req, res, next){
+async function getAll(req, res, next) {
     await articleService.getAll()
-        .then( (data) => {
+        .then((data) => {
             res.status(200).json({
                 message: "Berhasil mengambil data",
                 data: data
             })
-        } )
-        .catch( (err) => {
+        })
+        .catch((err) => {
             next(err)
-        } )
+        })
 }
 
 // Show All Article View
-function showArticleList(req,res,next) {
-    res.render('article-list')
+async function showArticleList(req, res, next) {
+    await articleService.getAll()
+        .then((data) => {
+            res.render('article-list', {
+                data: data
+            })
+        })
 }
 
 function updateView(req, res, next) {
     res.render('article-update')
 }
 
-function create(req, res, next){
+function create(req, res, next) {
     // It should return view
     res.render('article-add')
 }
 
-function show(req,res,next) {
+function show(req, res, next) {
     res.render('article-get')
 }
 
-async function getById(req, res, next){
+async function getById(req, res, next) {
     await articleService.getById(req.params.id)
-        .then( async (data) => {
+        .then(async(data) => {
             if (data == undefined) {
                 next("Article not found")
                 return;
@@ -71,60 +76,60 @@ async function getById(req, res, next){
                 message: "Berhasil mengambil data pada artikel spesifik",
                 data: data,
             })
-        } )
+        })
 }
 
 // Register a Article
 
 
 
-async function store( req, res, next ){
+async function store(req, res, next) {
     // Check whether the User is really exist or not
     let is404 = false;
     await userService.getById(req.body.user_id)
-        .then( (data) => {
+        .then((data) => {
             if (data == undefined) {
                 is404 = true
                 return next("User not found.")
             }
-        } )
-        .catch( (err) => {
+        })
+        .catch((err) => {
             next(err)
-        } );
+        });
     // If is404, then the function is stopped
-    if(is404){
+    if (is404) {
         return
     }
     await articleService.store(req.body)
-    .then( (data) => {
-        res.status(201).json({
-            message: "Input Article Berhasil",
-            data: data
+        .then((data) => {
+            res.status(201).json({
+                message: "Input Article Berhasil",
+                data: data
+            })
         })
-    } )
-    .catch ( (err) => next(err) )
+        .catch((err) => next(err))
 }
 
 // Update a Article
 
 
 
-async function update( req, res, next ){
+async function update(req, res, next) {
     await articleService.update(req.params.id, req.body)
-        .then( (data) => {
+        .then((data) => {
             res.status(204).json({
                 message: "Update Berhasil",
                 data: data,
             })
-        } )
-        .catch( (err) => {
+        })
+        .catch((err) => {
             next(err)
-        } )
+        })
 }
 
-async function _delete( req, res, next ){
+async function _delete(req, res, next) {
     await articleService.delete(req.params.id)
-        .then( (data) => {
+        .then((data) => {
             if (data.affectedRows == 0) {
                 next("Article not found")
                 return;
@@ -133,33 +138,33 @@ async function _delete( req, res, next ){
                 message: "Data berhasil di delete",
                 data: data
             })
-        } )
-        .catch( (err) => {
+        })
+        .catch((err) => {
             next(err)
-        } )
+        })
 }
 
-function validateCreateJSON( req, res, next ) {
+function validateCreateJSON(req, res, next) {
     const Schema = Joi.object({
         title: Joi.string()
-                .required()
-                .max(256),
+            .required()
+            .max(256),
         content: Joi.string()
-                .required(),
-        user_id : Joi.number()
-                .required(),
+            .required(),
+        user_id: Joi.number()
+            .required(),
     }).with('title', 'content')
 
     validateRequest(req, next, Schema);
 }
 
-function validateUpdateJSON( req, res, next ) {
+function validateUpdateJSON(req, res, next) {
     const Schema = Joi.object({
         title: Joi.string()
-                .required()
-                .max(256),
+            .required()
+            .max(256),
         content: Joi.string()
-                .required(),
+            .required(),
     }).with('title', 'content')
 
     validateRequest(req, next, Schema);

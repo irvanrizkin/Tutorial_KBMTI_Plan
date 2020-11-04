@@ -13,25 +13,23 @@
     <nav>
         <div class="nav-wrapper teal lighten-1">
             <div class="container">
-                <a href="#" class="brand-logo">Logo</a>
+                <a href="/homepage" class="brand-logo">Logo</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="">Login</a></li>
-                    <li><a href="">Sign In</a></li>
+                    <li><a href="/users/register-page">Sign In</a></li>
                 </ul>
                 <a href="#" class="right sidenav-trigger hide-on-large-only" data-target="mobileNav"><i
                         class="material-icons">more_vert</i></a>
                 <ul id="mobileNav" class="sidenav">
                     <li><a href="">Login</a></li>
-                    <li><a href="">Sign In</a></li>
+                    <li><a href="/users/register-page">Sign In</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container">
-        <h3>Lorem Ipsum Dolor</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore incidunt, autem eaque totam similique
-            voluptatum cumque distinctio magni pariatur perferendis debitis voluptates hic dolor dignissimos quaerat
-            nulla numquam veniam nesciunt.</p>
+        <h3>{{data.title}}</h3>
+        <p>{{data.content}}</p>
     </div>
     <script src="/assets/js/materialize.min.js"></script>
     <script>

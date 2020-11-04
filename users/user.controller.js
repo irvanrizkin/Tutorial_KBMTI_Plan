@@ -98,7 +98,7 @@ function edit(req, res, next) {
 
 async function update(req, res, next) {
     is404(req.params.id, next)
-        .then(async (value) => {
+        .then(async(value) => {
             if (value) {
                 next("User not found");
                 return;
@@ -122,7 +122,7 @@ async function update(req, res, next) {
 // Delete User
 async function _delete(req, res, next) {
     is404(req.params.id, next)
-        .then(async (value) => {
+        .then(async(value) => {
             if (value) {
                 next("User not found");
                 return;

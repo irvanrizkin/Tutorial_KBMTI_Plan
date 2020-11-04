@@ -13,14 +13,18 @@
 <body>
     <div class="center-div z-depth-3">
         <h4>Add New Article</h4>
-        <form action="" method="post">
+        <form action="/articles/store" method="post">
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" name="" id="titleAdd" class="validate">
+                    <input type="text" name="user_id" id="titleAdd" class="validate">
+                    <label for="textAdd">User ID</label>
+                </div>
+                <div class="input-field col s12">
+                    <input type="text" name="title" id="titleAdd" class="validate">
                     <label for="textAdd">Title</label>
                 </div>
                 <div class="input-field col s12">
-                    <textarea name="" id="contentAdd" class="materialize-textarea"></textarea>
+                    <textarea name="content" id="contentAdd" class="materialize-textarea"></textarea>
                     <label for="contentAdd">Content</label>
                 </div>
             </div>

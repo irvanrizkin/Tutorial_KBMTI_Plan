@@ -7,90 +7,42 @@
     <title>Homepage</title>
     <link rel="stylesheet" href="/assets/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/global.css">
 </head>
 
 <body>
     <nav>
         <div class="nav-wrapper teal lighten-1">
             <div class="container">
-                <a href="#" class="brand-logo">Logo</a>
+                <a href="/homepage" class="brand-logo">Logo</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="">Login</a></li>
-                    <li><a href="">Sign In</a></li>
+                    <li><a href="/users/register-page">Sign In</a></li>
                 </ul>
                 <a href="#" class="right sidenav-trigger hide-on-large-only" data-target="mobileNav"><i class="material-icons">more_vert</i></a>
                 <ul id="mobileNav" class="sidenav">
                     <li><a href="">Login</a></li>
-                    <li><a href="">Sign In</a></li>
+                    <li><a href="/users/register-page">Sign In</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container">
-        <div id="latestNews">
-            <h3>Latest News</h3>
-            <div class="row white-text">
-                <div class="col m4 s12">
-                    <div class="card teal lighten-1">
-                        <div class="card-content">
-                            <span class="card-title">Lorem ipsum dolor</span>
-                            <p class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius beatae explicabo id consectetur possimus minus est maiores excepturi! Delectus velit tempore illum quis totam. Non, adipisci? Quis inventore cum dolorem!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col m4 s12">
-                    <div class="card teal lighten-1">
-                        <div class="card-content">
-                            <span class="card-title">Lorem ipsum dolor</span>
-                            <p class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius beatae explicabo id consectetur possimus minus est maiores excepturi! Delectus velit tempore illum quis totam. Non, adipisci? Quis inventore cum dolorem!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col m4 s12">
-                    <div class="card teal lighten-1">
-                        <div class="card-content">
-                            <span class="card-title">Lorem ipsum dolor</span>
-                            <p class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius beatae explicabo id consectetur possimus minus est maiores excepturi! Delectus velit tempore illum quis totam. Non, adipisci? Quis inventore cum dolorem!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div id="moreNews">
-            <h3>More News</h3>
+            <h3>Homepage</h3>
             <div class="row white-text">
+                {{#each data}}
                 <div class="col m4 s12">
                     <div class="card teal lighten-1">
-                        <div class="card-content">
-                            <span class="card-title">Lorem ipsum dolor</span>
-                            <p class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius beatae explicabo id consectetur possimus minus est maiores excepturi! Delectus velit tempore illum quis totam. Non, adipisci? Quis inventore cum dolorem!</p>
-                        </div>
+                        <a class="not-link" href="/temp/show-article?id={{id}}">
+                            <div class="card-content">
+                                <span class="card-title">{{title}}</span>
+                                <p class="truncate">{{content}}</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="col m4 s12">
-                    <div class="card teal lighten-1">
-                        <div class="card-content">
-                            <span class="card-title">Lorem ipsum dolor</span>
-                            <p class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius beatae explicabo id consectetur possimus minus est maiores excepturi! Delectus velit tempore illum quis totam. Non, adipisci? Quis inventore cum dolorem!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col m4 s12">
-                    <div class="card teal lighten-1">
-                        <div class="card-content">
-                            <span class="card-title">Lorem ipsum dolor</span>
-                            <p class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius beatae explicabo id consectetur possimus minus est maiores excepturi! Delectus velit tempore illum quis totam. Non, adipisci? Quis inventore cum dolorem!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col m4 s12">
-                    <div class="card teal lighten-1">
-                        <div class="card-content">
-                            <span class="card-title">Lorem ipsum dolor</span>
-                            <p class="truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius beatae explicabo id consectetur possimus minus est maiores excepturi! Delectus velit tempore illum quis totam. Non, adipisci? Quis inventore cum dolorem!</p>
-                        </div>
-                    </div>
-                </div>
+                {{/each}}
             </div>
         </div>
     </div>
